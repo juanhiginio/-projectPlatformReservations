@@ -56,7 +56,7 @@ async function update(req, res) {
 }
 
 async function destroy(req, res) {
-  const userDelete = await Recipe.findById(req.params.id);
+  const userToDelete = await User.findById(req.params.id);
 
   userToDelete.deletedAt = Date.now();
   userToDelete.save();
