@@ -1,0 +1,40 @@
+Entidad Usuarios (User) -> 
+    name
+    email
+    password 
+    phone
+    idRol
+
+    -> 
+
+ ----------------------------------------
+
+Entidad Negocio (Business) ->
+    name
+    address
+    phone
+    email
+
+    -> idUser - idService
+
+ ----------------------------------------
+
+Entidad Servicio (Service) ->
+    name 
+    schedule
+    serviceTime
+    businessDays
+    address
+    price
+
+    -> idBusiness
+
+ ----------------------------------------
+
+Entidad Reserva (Reservation) ->
+    dateReservation
+    timeReservation
+    status
+    priceTotal
+
+    -> idService - idUser - idBusiness
