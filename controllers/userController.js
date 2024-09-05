@@ -56,12 +56,20 @@ async function update(req, res) {
 }
 
 async function destroy(req, res) {
-  const userToDelete = await User.findById(req.params.id);
+  try {
+    const userToDelete = await User.findById(req.params.id);
 
-  userToDelete.deletedAt = Date.now();
-  userToDelete.save();
+    if (userToDelete) {
+      userToDelete.deletedAt = Date.now();
+      userToDelete.save();
 
-  return res.json("Usuario eliminado");
+      return res.json("Usuario eliminado con exito");
+    } 
+    
+  } catch (err) {
+    console.log(err);
+    return res.status(404).json("Ups, hubo un error al eliminar el usuario que indicaste, puede que el usuario con el ID indicado no exista en los registros");
+  }
 }
 
 export default {

@@ -20,6 +20,12 @@ const userSchema = mongoose.Schema({
     type: Number,
     request: true,
   },
+  deletedAt: {
+    type: Date,
+    default: null,
+  }
+}, {
+  timestamps: true,
 });
 
 const User = mongoose.model("User", userSchema);

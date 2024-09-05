@@ -52,12 +52,21 @@ async function update(req, res) {
 }
 
 async function destroy(req, res) {
-  const TypeUserToDelete = await TypeUser.findById(req.params.id);
+  try {
+    const typeUserToDelete = await TypeUser.findById(req.params.id);
 
-  typeUserToDelete.deletedAt = Date.now();
-  typeUserToDelete.save();
+    if (typeUserToDelete) {
+      typeUserToDelete.deletedAt = Date.now();
+      typeUserToDelete.save();
 
-  return res.json("Tipo de Usuario eliminado");
+      return res.json("Tipo de Usuario eliminado");
+    }
+    
+  } catch (err) {
+    console.log(err);
+    return res.status(404).json("Ups, hubo un error al eliminar el rol que indicaste, puede que el rol con el ID indicado no exista en los registros");
+  }
+  
 }
 
 export default {
