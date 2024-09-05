@@ -2,6 +2,7 @@ import express from "express";
 import connectDB from "./config/database.js";
 import userRoutes from "./routes/userRoutes.js"
 import typeUserRoutes from "./routes/typeUserRoutes.js"
+import serviceRoutes from "./routes/serviceRoutes.js";
 
 const app = express();
 const port = 3000;
@@ -13,6 +14,7 @@ connectDB();
 //rutas
 app.use(userRoutes);
 app.use(typeUserRoutes);
+app.use(serviceRoutes);
 
 
 app.listen(port, () => {

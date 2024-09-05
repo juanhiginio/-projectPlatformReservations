@@ -4,21 +4,21 @@ import mongoose from "mongoose";
 const userSchema = mongoose.Schema({
   name: {
     type: String,
-    request: true,
+    required: [true, "El nombre del Usuario es requerido"],
   },
   email: {
     type: String,
-    request: true,
+    required: [true, "El email del Usuario es requerido"],
   },
 
   password: {
     type: String,
-    request: true,
+    required: [true, "La Contraseña del Usuario es requerida"],
   },
 
   phone: {
     type: Number,
-    request: true,
+    required: [true, "El telefono del Usuario es requerido"],
   },
   deletedAt: {
     type: Date,
