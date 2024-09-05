@@ -1,0 +1,10 @@
+1. Model 
+2. Controller (getAll, getById, create, update, destroy (CRUD))
+3. Routes - Server(Routes)
+
+Mune -> Business
+Giovanni -> Reservation
+Juan -> Service
+
+note Tener en cuenta para los modelos -> timestamps, deletedAt, Validaciones(type, request: true)
+
