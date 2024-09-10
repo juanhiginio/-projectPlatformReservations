@@ -4,6 +4,7 @@ Entidad Usuarios (User) ->
     password 
     phone
     idRol
+    deletedAt
 
     -> 
 
@@ -14,6 +15,7 @@ Entidad Negocio (Business) ->
     address
     phone
     email
+    deletedAt
 
     -> idUser - idService
 
@@ -26,6 +28,7 @@ Entidad Servicio (Service) ->
     businessDays
     address
     price
+    deletedAt
 
     -> idBusiness
 
@@ -36,5 +39,6 @@ Entidad Reserva (Reservation) ->
     timeReservation
     status
     priceTotal
+    deletedAt
 
     -> idService - idUser - idBusiness
