@@ -64,11 +64,14 @@ async function destroy(req, res) {
       userToDelete.save();
 
       return res.json("Usuario eliminado con exito");
-    } 
-    
+    }
   } catch (err) {
     console.log(err);
-    return res.status(404).json("Ups, hubo un error al eliminar el usuario que indicaste, puede que el usuario con el ID indicado no exista en los registros");
+    return res
+      .status(404)
+      .json(
+        "Ups, hubo un error al eliminar el usuario que indicaste, puede que el usuario con el ID indicado no exista en los registros"
+      );
   }
 }
 

@@ -3,7 +3,7 @@ Entidad Usuarios (User) ->
     email
     password 
     phone
-    idRol
+    idRol  (middlewars -> token)
 
     -> 
 
@@ -38,3 +38,6 @@ Entidad Reserva (Reservation) ->
     priceTotal
 
     -> idService - idUser - idBusiness
+
+
+tener encuenta casos de borde (si un dueño de negocio piensa entrar a otro negocio)
