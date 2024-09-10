@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const typeUserSchema = mongoose.Schema({
   type: {
     type: String,
-    request: true,
+    required: [true, "El nombre del tipo de usuario es requerido"],
   },
   deletedAt: {
     type: Date,

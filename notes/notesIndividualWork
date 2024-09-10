@@ -1,6 +1,6 @@
-1. Model 
-2. Controller (getAll, getById, create, update, destroy (CRUD))
-3. Routes - Server(Routes)
+1. Model -> Listo
+2. Controller (getAll, getById, create, update, destroy (CRUD)) -> Listo
+3. Routes - Server(Routes) -> Listo
 
 Mune -> Business
 Giovanni -> Reservation

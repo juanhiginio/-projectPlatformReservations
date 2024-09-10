@@ -8,7 +8,7 @@ async function getAll(req, res) {
     console.log(error);
     return res.status(404).json("Usuario no encontrado");
   }
-}
+};
 
 async function getById(req, res) {
   try {
@@ -18,7 +18,7 @@ async function getById(req, res) {
     console.log(error);
     return res.status(404).json("Usuario no encontrado");
   }
-}
+};
 
 async function create(req, res) {
   try {
@@ -34,26 +34,31 @@ async function create(req, res) {
     console.log(error.errors.name.properties.message);
     return res.status(501).json("Error en el servidor");
   }
-}
+};
 
 async function update(req, res) {
   const userToUpdate = await User.findById(req.params.id);
 
-  if (userToUpdate !== null) {
-    const { name, email, password, phone } = req.body;
-
-    userToUpdate.name = name || userUpdate.name;
-    userToUpdate.email = email || userToUpdate.email;
-    userToUpdate.password = password || userToUpdate.password;
-    userToUpdate.phone = phone || userToUpdate.phone;
-
-    await userToUpdate.save();
-
-    return res.json("El usuario se actualizo");
-  } else {
-    return res.json("El usuario no exite con este id");
+  try {
+    if (userToUpdate !== null) {
+      const { name, email, password, phone } = req.body;
+  
+      userToUpdate.name = name || userToUpdate.name;
+      userToUpdate.email = email || userToUpdate.email;
+      userToUpdate.password = password || userToUpdate.password;
+      userToUpdate.phone = phone || userToUpdate.phone;
+  
+      await userToUpdate.save();
+  
+      return res.json("El usuario se actualizo");
+    } else {
+      return res.json("El usuario no exite con este id");
+    }
+  } catch (err) {
+    console.log(err);
+    return res.json("Ups, hubo un error al intentar actualizar el usuario");
   }
-}
+};
 
 async function destroy(req, res) {
   try {
@@ -73,7 +78,7 @@ async function destroy(req, res) {
         "Ups, hubo un error al eliminar el usuario que indicaste, puede que el usuario con el ID indicado no exista en los registros"
       );
   }
-}
+};
 
 export default {
   getAll: getAll,
