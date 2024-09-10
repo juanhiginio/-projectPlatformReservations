@@ -1,12 +1,12 @@
-import User from "../models/Reservation.js";
+import Reservation from "../models/Reservation.js";
 
 async function getAll(req, res) {
   try {
     const reservation = await Reservation.find({ deletedAt: null });
-    return res.json(users);
+    return res.json(reservation);
   } catch (error) {
     console.log(error);
-    return res.status(404).json("No se encuentra reservas");
+    return res.status(404).json("No se encontraron reservas disponibles");
   }
 }
 
@@ -21,10 +21,9 @@ async function getById(req, res) {
 }
 
 
-
 async function create(req, res) {
   try {
-    const newReservation = await reservation.create({
+    const newReservation = await Reservation.create({
         dateReservation: req.body.dateReservation,
         timeReservation: req.body.timeReservation,
         status: req.body.status,
@@ -39,12 +38,12 @@ async function create(req, res) {
 }
 
 async function update(req, res) {
-  const reservationToUpdate = await UserReservation.findById(req.params.id);
+  const reservationToUpdate = await Reservation.findById(req.params.id);
 
   if (reservationToUpdate !== null) {
     const { dateReservation, timeReservation, status, priceTotal} = req.body;
 
-    reservationToUpdate.dateReservation = dateReservation || reservationUpdate.dateReservation;
+    reservationToUpdate.dateReservation = dateReservation || reservationToUpdate.dateReservation;
     reservationToUpdate.timeReservation = timeReservation || reservationToUpdate.timeReservation;
     reservationToUpdate.status = status || reservationToUpdate.status;
     reservationToUpdate.priceTotal = priceTotal|| reservationToUpdate.priceTotal;
