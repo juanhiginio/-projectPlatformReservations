@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 import express from "express";
 import connectDB from "./config/database.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -5,6 +7,10 @@ import typeUserRoutes from "./routes/typeUserRoutes.js";
 import businessRoutes from "./routes/businessRoutes.js";
 import reservationRoutes from "./routes/reservationRoutes.js";
 import serviceRoutes from "./routes/serviceRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+
+import fs from "fs";
+import path from "path";
 
 const app = express();
 const port = 3000;
@@ -13,7 +19,14 @@ app.use(express.json());
 
 connectDB();
 
+const uploadDir = path.join(import.meta.dirname, 'public/uploads');
+
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+};
+
 //rutas
+app.use(authRoutes);
 app.use(userRoutes);
 app.use(typeUserRoutes);
 app.use(businessRoutes);

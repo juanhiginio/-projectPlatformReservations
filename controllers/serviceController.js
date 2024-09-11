@@ -22,14 +22,17 @@ async function getById(req, res) {
 };
 
 async function create(req, res) {
-    const { name, schedule, serviceTime, businessDays, address, price } = req.body;
+    const { name, schedule, serviceTime, businessDays, address, details, price } = req.body;
+    const serviceLogo = req.file.filename;
     try {
         const newService = await Service.create({
             name: name,
+            serviceLogo,
             schedule: schedule,
             serviceTime: serviceTime,
             businessDays: businessDays,
             address: address,
+            details: details,
             price: price
         });
         return res.status(201).json("El nuevo Servicio ha sido creado con exito");
@@ -41,16 +44,19 @@ async function create(req, res) {
 
 async function update(req, res) {
     const serviceToUpdate = await Service.findById(req.params.id);
-
+    
     try {
         if(serviceToUpdate !== null) {
-            const { name, schedule, serviceTime, businessDays, address, price } = req.body;
+            const { name, schedule, serviceTime, businessDays, address, details, price } = req.body;
+            const serviceLogo = req.file.filename;
 
             serviceToUpdate.name = name || serviceToUpdate.name;
+            serviceToUpdate.serviceLogo = serviceLogo || serviceToUpdate.serviceLogo;
             serviceToUpdate.schedule = schedule || serviceToUpdate.schedule;
             serviceToUpdate.serviceTime = serviceTime || serviceToUpdate.serviceTime;
             serviceToUpdate.businessDays = businessDays || serviceToUpdate.businessDays;
             serviceToUpdate.address = address || serviceToUpdate.address;
+            serviceToUpdate.details = details || serviceToUpdate.details;
             serviceToUpdate.price = price || serviceToUpdate.price;
 
             await serviceToUpdate.save();

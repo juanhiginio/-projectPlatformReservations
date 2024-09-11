@@ -6,6 +6,10 @@ const serviceSchema = mongoose.Schema({
         type: String,
         required: [true, "El nombre del Servicio es requerido"],
     }, 
+    serviceLogo: {
+        type: String,
+        required: [true, "El logo del Servicio es requerido"],
+    },
     schedule: {
         type: String, 
         required: [true, "El cronograma del Servicio es requerido"],
@@ -21,6 +25,10 @@ const serviceSchema = mongoose.Schema({
     address: {
         type: String,
         required: [true, "La dirección donde se brinda el Servicio es requerida"],
+    },
+    details: {
+        type: String,
+        required: [true, "Los detalles del Servicio son requeridos"],
     },
     price: {
         type: Number,

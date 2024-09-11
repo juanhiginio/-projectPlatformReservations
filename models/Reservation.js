@@ -1,9 +1,13 @@
 import mongoose from "mongoose";
 
 const reservationSchema = mongoose.Schema({
+    user: {
+      type: mongoose.Types.ObjectId,
+      ref: "User"
+    },
     dateReservation: {
     type: Date,
-    request: true,
+    required: true,
   },
   timeReservation: {
     type: String,
@@ -16,6 +20,10 @@ const reservationSchema = mongoose.Schema({
   priceTotal: {
     type: Number,
     default: null,
+  },
+  deletedAt: {
+    type: Date,
+    default: null
   }
 }, {
   timestamps: true,

@@ -1,10 +1,10 @@
-1. Model -> Listo
-2. Controller (getAll, getById, create, update, destroy (CRUD)) -> Listo
-3. Routes - Server(Routes) -> Listo
+Tareas Para 10/09/2024 ->
 
-Mune -> Business
-Giovanni -> Reservation
-Juan -> Service
+1. Autenticación -> Listo
+2. Multers ( Business - Services ) -> Listo
 
-note Tener en cuenta para los modelos -> timestamps, deletedAt, Validaciones(type, request: true)
+Tareas faltantes (opcionales) -> 
+
+3. Relacionar entidades necesarias
+4. Validaciones - Middlewares 
 

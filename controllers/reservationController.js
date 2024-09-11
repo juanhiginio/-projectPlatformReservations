@@ -25,6 +25,7 @@ async function getById(req, res) {
 async function create(req, res) {
   try {
     const newReservation = await Reservation.create({
+        user: req.auth.id,
         dateReservation: req.body.dateReservation,
         timeReservation: req.body.timeReservation,
         status: req.body.status,

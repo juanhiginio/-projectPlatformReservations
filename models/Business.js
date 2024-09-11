@@ -4,19 +4,23 @@ const businessSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      request: true,
+      required: [true, "El nombre del Negocio es requerido"],
     },
     address: {
       type: String,
-      request: true,
+      required: [true, "La dirección del Negocio es requerido"],
     },
     phone: {
       type: String,
-      request: true,
+      required: [true, "El Telefono del Negocio es requerido"],
     },
     email: {
       type: String,
-      request: true,
+      required: [true, "El email del Negocio es requerido"],
+    },
+    businessLogo: {
+      type: String,
+      required: [true, "El logo del Negocio es requerido"],
     },
     deletedAt: {
       type: Date,

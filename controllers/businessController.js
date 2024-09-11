@@ -26,6 +26,7 @@ async function getAll(req, res) {
         address: req.body.address,
         phone: req.body.phone,
         email: req.body.email,
+        businessLogo: req.file.filename
       });
   
       return res.status(201).json(newBusiness);
@@ -40,11 +41,13 @@ async function getAll(req, res) {
   
     if (businessToUpdate !== null) {
       const { name, adress, phone, email } = req.body;
+      const businessLogo = req.file.filename;
   
      businessToUpdate.name = name || businessToUpdate.name;
       businessToUpdate.address = adress || businessToUpdate.address;
       businessToUpdate.phone = phone || businessToUpdate.phone;
       businessToUpdate.email = email || businessToUpdate.email;
+      businessToUpdate.businessLogo = businessLogo || businessToUpdate.businessLogo;
       
       await businessToUpdate.save();
   
