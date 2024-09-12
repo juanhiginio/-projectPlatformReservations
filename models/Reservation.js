@@ -24,7 +24,19 @@ const reservationSchema = mongoose.Schema({
   deletedAt: {
     type: Date,
     default: null
-  }
+  },
+  business: {
+    type: mongoose.Types.ObjectId,
+    ref: "business"
+  },
+  service: {
+    type: mongoose.Types.ObjectId,
+    ref: "Service"
+  },
+  user: {
+    type: mongoose.Types.ObjectId,
+    ref: "User"
+  },
 }, {
   timestamps: true,
 });

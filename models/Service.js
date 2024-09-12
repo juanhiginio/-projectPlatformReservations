@@ -37,6 +37,10 @@ const serviceSchema = mongoose.Schema({
     deletedAt: {
         type: Date,
         default: null,
+    },
+    businessService: {
+        type: mongoose.Types.ObjectId,
+        ref: "business"
     }
 }, {
     timestamps: true,

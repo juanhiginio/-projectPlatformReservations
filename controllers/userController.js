@@ -1,8 +1,10 @@
 import User from "../models/User.js";
+import TypeUser from "../models/TypeUser.js";
 
 async function getAll(req, res) {
   try {
-    const users = await User.find({ deletedAt: null });
+    const users = await User.find({ deletedAt: null })
+    .populate("typeUser", ["type"]);
     return res.json(users);
   } catch (error) {
     console.log(error);
@@ -27,6 +29,8 @@ async function create(req, res) {
       email: req.body.email,
       password: req.body.password,
       phone: req.body.phone,
+
+      typeUser: req.body.typeUser,
     });
 
     return res.status(201).json(newUser);
@@ -41,12 +45,14 @@ async function update(req, res) {
 
   try {
     if (userToUpdate !== null) {
-      const { name, email, password, phone } = req.body;
+      const { name, email, password, phone, typeUser } = req.body;
   
       userToUpdate.name = name || userToUpdate.name;
       userToUpdate.email = email || userToUpdate.email;
       userToUpdate.password = password || userToUpdate.password;
       userToUpdate.phone = phone || userToUpdate.phone;
+
+      userToUpdate.typeUser = typeUser || userToUpdate.typeUser;
   
       await userToUpdate.save();
   

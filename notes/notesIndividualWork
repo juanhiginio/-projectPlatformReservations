@@ -5,6 +5,9 @@ Tareas Para 10/09/2024 ->
 
 Tareas faltantes (opcionales) -> 
 
-3. Relacionar entidades necesarias
-4. Validaciones - Middlewares 
+3. Relacionar entidades necesarias -> Listo
+
+
+4. Validaciones - Middlewares -> Mañana (Hacer Middleware general para Token para aplicarlo en las rutas)
+                                        (Hacer validaciones faltantes para -> reservation - service -> (if ususario token))
 

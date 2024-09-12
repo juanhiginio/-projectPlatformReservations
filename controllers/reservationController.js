@@ -1,8 +1,15 @@
 import Reservation from "../models/Reservation.js";
 
+import User from "../models/User.js";
+import business from "../models/Business.js";
+import Service from "../models/Service.js";
+
 async function getAll(req, res) {
   try {
-    const reservation = await Reservation.find({ deletedAt: null });
+    const reservation = await Reservation.find({ deletedAt: null })
+    .populate("business")
+    .populate("service")
+    .populate("user");
     return res.json(reservation);
   } catch (error) {
     console.log(error);
@@ -23,20 +30,34 @@ async function getById(req, res) {
 
 
 async function create(req, res) {
-  try {
-    const newReservation = await Reservation.create({
-        user: req.auth.id,
-        dateReservation: req.body.dateReservation,
-        timeReservation: req.body.timeReservation,
-        status: req.body.status,
-        priceTotal: req.body.priceTotal,
-    });
 
-    return res.status(201).json(newReservation);
-  } catch (error) {
-    console.log(error.errors.status.properties.message);
-    return res.status(501).json("Error en el servidor");
+  const user = await User.findById(req.auth.id);
+
+  console.log(user);
+
+  if (user) {
+    try {
+      const newReservation = await Reservation.create({
+          user: req.auth.id,
+          dateReservation: req.body.dateReservation,
+          timeReservation: req.body.timeReservation,
+          status: req.body.status,
+          priceTotal: req.body.priceTotal,
+  
+          business: req.body.business,
+          service: req.body.service,
+          user: req.auth.id
+      });
+  
+      return res.status(201).json(newReservation);
+    } catch (error) {
+      console.log(error.errors.status.properties.message);
+      return res.status(501).json("Error en el servidor");
+    }
   }
+
+  return res.json("Para hacer una reservación debes estar registrado");
+
 }
 
 async function update(req, res) {
