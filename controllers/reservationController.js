@@ -55,9 +55,6 @@ async function create(req, res) {
       return res.status(501).json("Error en el servidor");
     }
   }
-
-  return res.json("Para hacer una reservación debes estar registrado");
-
 }
 
 async function update(req, res) {
