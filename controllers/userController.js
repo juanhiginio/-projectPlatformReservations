@@ -27,6 +27,7 @@ async function create(req, res) {
     const newUser = await User.create({
       name: req.body.name,
       email: req.body.email,
+      address: req.body.address,
       password: req.body.password,
       phone: req.body.phone,
 
@@ -45,10 +46,11 @@ async function update(req, res) {
 
   try {
     if (userToUpdate !== null) {
-      const { name, email, password, phone, typeUser } = req.body;
+      const { name, email, address ,password, phone, typeUser } = req.body;
   
       userToUpdate.name = name || userToUpdate.name;
       userToUpdate.email = email || userToUpdate.email;
+      userToUpdate.address = address || userToUpdate.address;
       userToUpdate.password = password || userToUpdate.password;
       userToUpdate.phone = phone || userToUpdate.phone;
 

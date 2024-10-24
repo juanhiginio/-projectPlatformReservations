@@ -1,5 +1,5 @@
 import "dotenv/config";
-
+import cors from "cors";
 import express from "express";
 import connectDB from "./config/database.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -16,6 +16,9 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(cors());
+// Todo lo que haya en la carpeta public, 
+app.use(express.static("public"));
 
 connectDB();
 

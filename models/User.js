@@ -10,7 +10,10 @@ const userSchema = mongoose.Schema({
     type: String,
     required: [true, "El email del Usuario es requerido"],
   },
-
+  address: {
+    type: String,
+    required: [true, "La dirección de un usuario en requerida"]
+  },
   password: {
     type: String,
     required: [true, "La Contraseña del Usuario es requerida"],

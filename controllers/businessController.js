@@ -3,8 +3,12 @@ import User from "../models/User.js";
 
 async function getAll(req, res) {
   try {
-    const business = await Business.find({ deletedAt: null })
-    .populate("userBusiness", ["-password"]);
+
+    const query = req.query.category ? {category: req.query.category} : {} 
+
+    const business = await Business.find({ ...query, deletedAt: null })
+    .populate("userBusiness", ["-password"])
+    .populate("services");
     return res.json(business);
   } catch (error) {
     console.log(error);
@@ -13,7 +17,7 @@ async function getAll(req, res) {
 
   async function getById(req, res) {
     try {
-      const business = await Business.findById(req.params.id);
+      const business = await Business.findById(req.params.id).populate("services");
       return res.json(business);
     } catch (error) {
       console.log(error);
@@ -32,7 +36,9 @@ async function getAll(req, res) {
       try {
         const newBusiness = await Business.create({
           name: req.body.name,
+          slogan: req.body.slogan,
           address: req.body.address,
+          category: req.body.category,
           phone: req.body.phone,
           email: req.body.email,
           businessLogo: req.file.filename,
@@ -62,11 +68,13 @@ async function getAll(req, res) {
       const businessToUpdate = await Business.findById(req.params.id);
   
       if (businessToUpdate !== null) {
-        const { name, adress, phone, email } = req.body;
+        const { name, adress, phone, email, category, slogan } = req.body;
         const businessLogo = req.file.filename;
     
        businessToUpdate.name = name || businessToUpdate.name;
+       businessToUpdate.slogan = slogan || businessToUpdate.slogan;
         businessToUpdate.address = adress || businessToUpdate.address;
+        businessToUpdate.category = category || businessToUpdate.category;
         businessToUpdate.phone = phone || businessToUpdate.phone;
         businessToUpdate.email = email || businessToUpdate.email;
         businessToUpdate.businessLogo = businessLogo || businessToUpdate.businessLogo;

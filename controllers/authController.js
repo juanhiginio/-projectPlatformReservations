@@ -15,12 +15,12 @@ async function token(req, res) {
 
             if (match) {
                 const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY);
-                return res.json({ token: token });
+                return res.json({ token: token, name: user.name });
             };
 
         };
 
-        return res.json({
+        return res.status(401).json({
             message: "Error, las credenciales son invalidas"
         });
 
