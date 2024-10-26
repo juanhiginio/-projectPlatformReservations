@@ -6,7 +6,7 @@ import Service from "../models/Service.js";
 
 async function getAll(req, res) {
   try {
-    const reservation = await Reservation.find({ deletedAt: null })
+    const reservation = await Reservation.find({ deletedAt: null, user: req.auth.id })
     .populate("business")
     .populate("service")
     .populate("user");
@@ -31,6 +31,10 @@ async function getById(req, res) {
 
 async function create(req, res) {
 
+  console.log(req.auth.id);
+
+  console.log(req.body);
+
   const user = await User.findById(req.auth.id);
 
   console.log(user);
@@ -43,16 +47,16 @@ async function create(req, res) {
           timeReservation: req.body.timeReservation,
           status: req.body.status,
           priceTotal: req.body.priceTotal,
-  
           business: req.body.business,
           service: req.body.service,
-          user: req.auth.id
       });
   
       return res.status(201).json(newReservation);
     } catch (error) {
-      console.log(error.errors.status.properties.message);
-      return res.status(501).json("Error en el servidor");
+      console.log(error.errors);//.status.properties.message);
+      return res.status(501).json({
+        message: ("Error en el servidor")
+      })
     }
   }
 }
