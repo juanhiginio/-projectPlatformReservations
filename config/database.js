@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 
+const mongouri = process.env.DB_URI;
+
 async function connectDB() {
     try {
         const connection = await mongoose.connect(
-            "mongodb://localhost:27017/DatabasePlataformReservations"
+            mongouri
         );
         console.log("Se ha establecido conexión con la Base de Datos");
     } catch (err) {

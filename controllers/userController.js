@@ -36,7 +36,7 @@ async function create(req, res) {
 
     return res.status(201).json(newUser);
   } catch (error) {
-    console.log(error.errors.name.properties.message);
+    console.log(error);
     return res.status(501).json("Error en el servidor");
   }
 };
