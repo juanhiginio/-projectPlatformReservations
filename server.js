@@ -11,6 +11,10 @@ import authRoutes from "./routes/authRoutes.js";
 
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = 3000;
@@ -20,13 +24,21 @@ app.use(cors());
 // Todo lo que haya en la carpeta public, 
 app.use(express.static("public"));
 
-connectDB();
+if (process.env.NODE_ENV !== "test") {
 
-const uploadDir = path.join(import.meta.dirname, 'public/uploads');
+  connectDB();
+
+  const uploadDir = path.join(__dirname||"", 'public/uploads');
 
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 };
+
+app.listen(port, () => {
+  console.log(`El servidor esta corriendo en el puerto ${port}`);
+});
+
+}
 
 //rutas
 app.use(authRoutes);
@@ -36,7 +48,4 @@ app.use(businessRoutes);
 app.use(reservationRoutes);
 app.use(serviceRoutes);
 
-
-app.listen(port, () => {
-  console.log(`El servidor esta corriendo en el puerto ${port}`);
-});
+export default app;
