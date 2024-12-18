@@ -1,51 +1,34 @@
-import { jest } from "@jest/globals";
-import request from "supertest";
+import {describe, expect, it, jest} from '@jest/globals';
 
 jest.unstable_mockModule("../models/User.js", () => ({
   default: {
+    find: jest.fn(),
     findById: jest.fn(),
-  },
-}));
-
-jest.unstable_mockModule("../models/Service.js", () => ({
-  default: {
     create: jest.fn(),
+    update: jest.fn(),
   },
 }));
 
 // Importa los módulos después de los mocks
-const { default: User } = await import("../models/User.js");
-const { default: Service } = await import("../models/Service.js");
-const app = (await import("../server.js")).default;
+const { create, getAll } = await import('../controllers/userController.js');
+const User = (await import('../models/User.js')).default;
 
-describe("POST /api/services", () => {
-  const mockUserId = "mock-user-id";
-  const urlPostPath = "/api/services";
+describe ('crear usuario', () => {
 
-  beforeEach(() => {
-    jest.clearAllMocks();
+  it('debería crear un nuevo User', async () => { 
+
+    const mockUser = { name: 'Alejandro', email: 'alejandro12@gmail.com', addres: 'cll 29 n # 71 a 19', password: '123456alejo', phone: 8792457832, typeUser: '1231231239817293' }; 
+    User.create.mockResolvedValue(mockUser); 
+    const req = { 
+      body: { name: 'Alejandro', email: 'alejandro12@gmail.com', addres: 'cll 29 n # 71 a 19', password: '123456alejo', phone: 8792457832, typeUser: '1231231239817293'}, 
+    }; 
+    const res = { 
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    }; 
+      await create(req, res); 
+      expect(res.status).toHaveBeenCalledWith(201); 
+    
   });
 
-  it("Debería manejar errores al crear un servicio", async () => {
-
-    User.findById.mockResolvedValueOnce({
-      _id: mockUserId,
-      typeUser: "66e2360cc4e29e2f6762e241",
-    });
-
-    Service.create.mockRejectedValueOnce(new Error("Error en la base de datos"));
-
-    const response = await request(app)
-      .post(urlPostPath)
-      .set("Authorization", "Bearer mock-token")
-      .field("name", "Test Service")
-      .field("price", 1000)
-      .attach("serviceLogo", Buffer.from("mock image content"), "mock-logo.png");
-
-    expect(response.statusCode).toBe(401);
-    expect(response.body).toBe(
-      "Para realizar esta acción debes estar registrado en el sistema"
-    );
-  });
 });
-
