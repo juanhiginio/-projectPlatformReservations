@@ -49,3 +49,44 @@ describe ('crear usuario', () => {
 
 
 });
+
+describe ('obtener todos los usuarios', () => {
+
+  it('beberia traer una lista con todos los usuarios registrados', async () => {
+
+    const mockUser = [
+
+      {_id: '67253243b8c35a1654542d70', 
+        name: 'Alejandro', 
+        email: 'alejandro12@gmail.com', 
+        addres: 'cll 29 n # 71 a 19', 
+        password: '123456alejo', 
+        phone: 8792457832, 
+        deletedAt: null, 
+        typeUser: {_id: '66e2360cc4e29e2f6762e241', type: 'admin'}, 
+        createdAt: "2024-11-01T19:55:47.992Z", 
+        updatedAt: "2024-11-01T19:55:47.992Z"}
+
+    ];
+
+    const populateMock = jest.fn().mockResolvedValue(mockUser); 
+    User.find.mockReturnValue({ populate: populateMock });
+
+    const req = {};
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn(),
+    };
+
+    await getAll(req, res);
+    expect(res.status).toHaveBeenCalledWith(200);
+    expect(res.json).toHaveBeenCalledWith(mockUser);
+  });
+
+  it('deberia traer un error en caso de que no se encuentre el usuario', async () =>{
+
+
+    
+  });
+
+});

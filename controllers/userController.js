@@ -1,11 +1,11 @@
 import User from "../models/User.js";
 import TypeUser from "../models/TypeUser.js";
 
-async function getAll(req, res) {
+export const getAll = async (req, res) => {
   try {
     const users = await User.find({ deletedAt: null })
     .populate("typeUser", ["type"]);
-    return res.json(users);
+    return res.status(200).json(users);
   } catch (error) {
     console.log(error);
     return res.status(404).json("Usuario no encontrado");
