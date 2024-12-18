@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1734494305622" clover="3.2.0">
-  <project timestamp="1734494305623" name="All files">
-    <metrics statements="305" coveredstatements="104" conditionals="98" coveredconditionals="5" methods="33" coveredmethods="7" elements="436" coveredelements="116" complexity="0" loc="305" ncloc="305" packages="6" files="20" classes="20"/>
+<coverage generated="1734495010063" clover="3.2.0">
+  <project timestamp="1734495010064" name="All files">
+    <metrics statements="306" coveredstatements="105" conditionals="98" coveredconditionals="5" methods="33" coveredmethods="7" elements="437" coveredelements="117" complexity="0" loc="306" ncloc="306" packages="6" files="20" classes="20"/>
     <package name="projectPlatformReservations">
       <metrics statements="20" coveredstatements="14" conditionals="6" coveredconditionals="1" methods="1" coveredmethods="0"/>
       <file name="server.js" path="C:\Users\Juan Diego\OneDrive\Escritorio\projectPlatformReservations\server.js">
@@ -52,7 +52,7 @@
       </file>
     </package>
     <package name="projectPlatformReservations.controllers">
-      <metrics statements="221" coveredstatements="40" conditionals="88" coveredconditionals="3" methods="26" coveredmethods="6"/>
+      <metrics statements="222" coveredstatements="41" conditionals="88" coveredconditionals="3" methods="26" coveredmethods="6"/>
       <file name="authController.js" path="C:\Users\Juan Diego\OneDrive\Escritorio\projectPlatformReservations\controllers\authController.js">
         <metrics statements="10" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="8" count="0" type="stmt"/>
@@ -252,7 +252,7 @@
         <line num="66" count="1" type="stmt"/>
       </file>
       <file name="userController.js" path="C:\Users\Juan Diego\OneDrive\Escritorio\projectPlatformReservations\controllers\userController.js">
-        <metrics statements="38" coveredstatements="0" conditionals="16" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <metrics statements="39" coveredstatements="1" conditionals="16" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="6" count="0" type="stmt"/>
         <line num="8" count="0" type="stmt"/>
@@ -263,6 +263,7 @@
         <line num="18" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="21" count="0" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
         <line num="27" count="0" type="stmt"/>
         <line num="37" count="0" type="stmt"/>

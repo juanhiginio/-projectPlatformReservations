@@ -22,7 +22,7 @@ async function getById(req, res) {
   }
 };
 
-async function create(req, res) {
+export const create = async (req, res) => {
   try {
     const newUser = await User.create({
       name: req.body.name,
