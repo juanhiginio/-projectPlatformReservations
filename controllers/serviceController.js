@@ -14,7 +14,7 @@ async function getAll(req, res) {
     }
 };
 
-async function getById(req, res) {
+export const getById = async (req, res) => {
     try {
         const specificServiceID = req.params.id;
         const specificService = await Service.findById(specificServiceID);
@@ -25,7 +25,7 @@ async function getById(req, res) {
     }
 };
 
-async function create(req, res) {
+export const create = async (req, res) => {
     const { name, schedule, serviceTime, businessDays, address, details, price, businessService } = req.body;
     const serviceLogo = req.file.filename;
 

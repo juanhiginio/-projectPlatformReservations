@@ -1,47 +1,46 @@
 import TypeUser from "../models/TypeUser.js";
 
-async function getAll(req, res) {
+export const getAll = async(req, res) => {
   try {
     const typeUsers = await TypeUser.find({ deletedAt: null });
-    return res.json(typeUsers);
+    return res.status(200).json(typeUsers);
   } catch (error) {
     console.log(error);
     return res.status(404).json("Tpo de Usuario no encontrado");
   }
 }
 
-async function getById(req, res) {
+export const getById = async(req, res) => {
   try {
     const typeUser = await TypeUser.findById(req.params.id);
-    return res.json(typeUser);
+    return res.status(200).json(typeUser);
   } catch (error) {
     console.log(error);
     return res.status(404).json("Tipo de Usuario no encontrado");
   }
 }
 
-async function create(req, res) {
+export const create =async (req, res) => {
   try {
     const newTypeUser = await TypeUser.create({
       type: req.body.type,
-      
+
     });
 
     return res.status(201).json(newTypeUser);
   } catch (error) {
-    console.log(error.errors.type.properties.message);
     return res.status(501).json("Error en el servidor");
   }
 }
 
-async function update(req, res) {
+export const update = async(req, res)=> {
   const typeUserToUpdate = await TypeUser.findById(req.params.id);
 
   if (typeUserToUpdate !== null) {
     const { type} = req.body;
 
-    typeUserToUpdate.type = type || typeUserUpdate.type;
-  
+    typeUserToUpdate.type = type 
+
 
     await typeUserToUpdate.save();
 
@@ -51,7 +50,7 @@ async function update(req, res) {
   }
 }
 
-async function destroy(req, res) {
+export const destroy = async(req, res) =>{
   try {
     const typeUserToDelete = await TypeUser.findById(req.params.id);
 
@@ -61,12 +60,12 @@ async function destroy(req, res) {
 
       return res.json("Tipo de Usuario eliminado");
     }
-    
+
   } catch (err) {
     console.log(err);
     return res.status(404).json("Ups, hubo un error al eliminar el rol que indicaste, puede que el rol con el ID indicado no exista en los registros");
   }
-  
+
 }
 
 export default {
