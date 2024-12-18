@@ -15,7 +15,7 @@ async function getAll(req, res) {
     return res.status(404).json("negocio no encontrado");
   }}
 
-  async function getById(req, res) {
+ export const  getById =  async(req, res) => {
     try {
       const business = await Business.findById(req.params.id).populate("services");
       return res.json(business);
