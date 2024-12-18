@@ -1,4 +1,6 @@
 import {describe, expect, it, jest} from '@jest/globals';
+import { populate } from 'dotenv';
+import { json } from 'express';
 
 jest.unstable_mockModule("../models/User.js", () => ({
   default: {
@@ -63,7 +65,7 @@ describe ('obtener todos los usuarios', () => {
         password: '123456alejo', 
         phone: 8792457832, 
         deletedAt: null, 
-        typeUser: {_id: '66e2360cc4e29e2f6762e241', type: 'admin'}, 
+        typeUser: {type: 'admin'}, 
         createdAt: "2024-11-01T19:55:47.992Z", 
         updatedAt: "2024-11-01T19:55:47.992Z"}
 
@@ -85,8 +87,20 @@ describe ('obtener todos los usuarios', () => {
 
   it('deberia traer un error en caso de que no se encuentre el usuario', async () =>{
 
+    const populateMock = jest.fn().mockRejectedValue(new Error('Error en la base de datos'))
+    User.find.mockReturnValue({populate: populateMock});
 
-    
+    const req = {};
+    const res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn()
+    };
+
+    await getAll(req, res);
+
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith('Usuario no encontrado');
+
   });
 
 });

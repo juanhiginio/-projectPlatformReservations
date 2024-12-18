@@ -7,7 +7,6 @@ export const getAll = async (req, res) => {
     .populate("typeUser", ["type"]);
     return res.status(200).json(users);
   } catch (error) {
-    console.log(error);
     return res.status(404).json("Usuario no encontrado");
   }
 };

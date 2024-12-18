@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1734552433167" clover="3.2.0">
-  <project timestamp="1734552433167" name="All files">
-    <metrics statements="138" coveredstatements="60" conditionals="42" coveredconditionals="3" methods="16" coveredmethods="8" elements="196" coveredelements="71" complexity="0" loc="138" ncloc="138" packages="2" files="6" classes="6"/>
+<coverage generated="1734553172320" clover="3.2.0">
+  <project timestamp="1734553172321" name="All files">
+    <metrics statements="137" coveredstatements="61" conditionals="42" coveredconditionals="3" methods="16" coveredmethods="8" elements="195" coveredelements="72" complexity="0" loc="137" ncloc="137" packages="2" files="6" classes="6"/>
     <package name="controllers">
-      <metrics statements="125" coveredstatements="50" conditionals="42" coveredconditionals="3" methods="15" coveredmethods="8"/>
+      <metrics statements="124" coveredstatements="51" conditionals="42" coveredconditionals="3" methods="15" coveredmethods="8"/>
       <file name="serviceController.js" path="C:\Users\ISPIS\Documents\Clases_BIT\proyecto_main\-projectPlatformReservations\controllers\serviceController.js">
         <metrics statements="51" coveredstatements="6" conditionals="22" coveredconditionals="0" methods="5" coveredmethods="1"/>
         <line num="7" count="0" type="stmt"/>
@@ -96,47 +96,46 @@
         <line num="66" count="1" type="stmt"/>
       </file>
       <file name="userController.js" path="C:\Users\ISPIS\Documents\Clases_BIT\proyecto_main\-projectPlatformReservations\controllers\userController.js">
-        <metrics statements="40" coveredstatements="10" conditionals="16" coveredconditionals="0" methods="5" coveredmethods="2"/>
+        <metrics statements="39" coveredstatements="11" conditionals="16" coveredconditionals="0" methods="5" coveredmethods="2"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
         <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
         <line num="26" count="2" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
-        <line num="40" count="1" type="stmt"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="47" count="0" type="stmt"/>
-        <line num="48" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="49" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="52" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="55" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="57" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="61" count="0" type="stmt"/>
-        <line num="63" count="0" type="stmt"/>
+        <line num="56" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
         <line num="66" count="0" type="stmt"/>
-        <line num="67" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
         <line num="72" count="0" type="stmt"/>
-        <line num="73" count="0" type="stmt"/>
-        <line num="75" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="74" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="75" count="0" type="stmt"/>
         <line num="76" count="0" type="stmt"/>
-        <line num="77" count="0" type="stmt"/>
-        <line num="79" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
         <line num="82" count="0" type="stmt"/>
-        <line num="83" count="0" type="stmt"/>
       </file>
     </package>
     <package name="models">
