@@ -3,18 +3,18 @@ import Service from "../models/Service.js";
 import business from "../models/Business.js";
 import User from "../models/User.js";
 
-async function getAll(req, res) {
+export const getAll = async (req, res) => {
     try {
         const services = await Service.find({ deletedAt: null })
         .populate("businessService");
-        return res.json(services);
+        return res.status(200).json(services);
     } catch (err) {
         console.log(err);
         return res.status(404).json("No se encontro la lista completa de servicios");
     }
 };
 
-async function getById(req, res) {
+export const getById = async (req, res) => {
     try {
         const specificServiceID = req.params.id;
         const specificService = await Service.findById(specificServiceID);
@@ -25,7 +25,7 @@ async function getById(req, res) {
     }
 };
 
-async function create(req, res) {
+export const create = async (req, res) => {
     const { name, schedule, serviceTime, businessDays, address, details, price, businessService } = req.body;
     const serviceLogo = req.file.filename;
 
@@ -58,7 +58,7 @@ async function create(req, res) {
 
 };
 
-async function update(req, res) {
+export const update = async (req, res) => {
     const serviceToUpdate = await Service.findById(req.params.id);
     
     try {
@@ -87,7 +87,7 @@ async function update(req, res) {
     }
 };
 
-async function destroy(req, res) {
+export const destroy = async (req, res) => {
     try {
         const serviceToDelete = await Service.findById(req.params.id);
 
