@@ -30,5 +30,22 @@ describe ('crear usuario', () => {
       expect(res.status).toHaveBeenCalledWith(201); 
     
   });
+  //hice los test para errores de create services
+  it (`deberia tirar error 501`, async () =>{
+    const mockUser = { name: 'Alejandro', email: 'alejandro12@gmail.com', addres: 'cll 29 n # 71 a 19', password: '123456alejo', phone: 8792457832, typeUser: '1231231239817293' }; 
+    User.create.mockRejectedValue(null)
+
+
+    const req ={body:mockUser}
+    const res ={status: jest.fn().mockReturnThis(),
+      json: jest.fn(),}
+
+
+      await create(req, res); 
+
+      expect(res.status).toHaveBeenCalledWith(501);
+      expect (res.json).toHaveBeenCalledWith(`Error en el servidor`);
+  })
+
 
 });

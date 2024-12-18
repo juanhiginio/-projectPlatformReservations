@@ -25,7 +25,7 @@ async function getAll(req, res) {
     }
   }
   
-  async function create(req, res) {
+  export const create = async(req, res) => {
 
     const user = await User.findById(req.auth.id);
 
@@ -48,7 +48,7 @@ async function getAll(req, res) {
     
         return res.status(201).json(newBusiness);
       } catch (error) {
-        console.log(error.message || error);
+      
         return res.status(501).json("Error en el servidor");
       }
 
