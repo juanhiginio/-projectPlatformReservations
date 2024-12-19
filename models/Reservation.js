@@ -33,10 +33,6 @@ const reservationSchema = mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: "Service"
   },
-  user: {
-    type: mongoose.Types.ObjectId,
-    ref: "User"
-  },
 }, {
   timestamps: true,
 });

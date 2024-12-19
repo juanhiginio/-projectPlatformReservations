@@ -1,7 +1,7 @@
 import Business from "../models/Business.js";
 import User from "../models/User.js";
 
-async function getAll(req, res) {
+export const getAll = async (req, res) => {
   try {
 
     const query = req.query.category ? {category: req.query.category} : {} 
@@ -9,9 +9,8 @@ async function getAll(req, res) {
     const business = await Business.find({ ...query, deletedAt: null })
     .populate("userBusiness", ["-password"])
     .populate("services");
-    return res.json(business);
+    return res.status(200).json(business);
   } catch (error) {
-    console.log(error);
     return res.status(404).json("negocio no encontrado");
   }}
 

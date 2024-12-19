@@ -4,13 +4,13 @@ import User from "../models/User.js";
 import business from "../models/Business.js";
 import Service from "../models/Service.js";
 
-async function getAll(req, res) {
+export const getAll = async (req, res) => {
   try {
     const reservation = await Reservation.find({ deletedAt: null, user: req.auth.id })
     .populate("business")
     .populate("service")
     .populate("user");
-    return res.json(reservation);
+    return res.status(200).json(reservation);
   } catch (error) {
     console.log(error);
     return res.status(404).json("No se encontraron reservas disponibles");
