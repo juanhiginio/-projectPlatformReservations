@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for models/Business.js</title>
+    <title>Code coverage report for models/Reservation.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../index.html">All files</a> / <a href="index.html">models</a> Business.js</h1>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">models</a> Reservation.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
@@ -104,29 +104,9 @@
 <a name='L39'></a><a href='#L39'>39</a>
 <a name='L40'></a><a href='#L40'>40</a>
 <a name='L41'></a><a href='#L41'>41</a>
-<a name='L42'></a><a href='#L42'>42</a>
-<a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a>
-<a name='L45'></a><a href='#L45'>45</a>
-<a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a>
-<a name='L48'></a><a href='#L48'>48</a>
-<a name='L49'></a><a href='#L49'>49</a>
-<a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a>
-<a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L42'></a><a href='#L42'>42</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -163,89 +143,49 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import mongoose from "mongoose";
 &nbsp;
-const businessSchema = mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: [true, "El nombre del Negocio es requerido"],
-    },
-    slogan: {
-      type: String,
-      required:[true, "El Slogan del Negocio es requerido"]
-    },
-    address: {
-      type: String,
-      required: [true, "La dirección del Negocio es requerido"],
-    },
-    category: {
-      type: String,
-      required: [true, "La categoria del Negocio es requerida"],
-    },
-    phone: {
-      type: String,
-      required: [true, "El Telefono del Negocio es requerido"],
-    },
-    email: {
-      type: String,
-      required: [true, "El email del Negocio es requerido"],
-    },
-    businessLogo: {
-      type: String,
-      required: [true, "El logo del Negocio es requerido"],
-    },
-    deletedAt: {
-      type: Date,
-      default: null,
-    },
-    userBusiness: {
+const reservationSchema = mongoose.Schema({
+    user: {
       type: mongoose.Types.ObjectId,
       ref: "User"
-    }
+    },
+    dateReservation: {
+    type: Date,
+    required: true,
   },
-  {
-    timestamps: true,
-  }
-);
-&nbsp;
-// Dato que existe en tiempo de ejecución pero no en la base de datos
-businessSchema.virtual("services", {
-  ref: "Service",
-  // Declaramos la propiedad que mantiene único al modelo
-  localField: "_id",
-  // Campo en servicio que esta haciendo relacion en el modelo business
-  foreignField: "businessService"
+  timeReservation: {
+    type: String,
+    default: null,
+  },
+  status: {
+    type: String,
+    default: null,
+  },
+  priceTotal: {
+    type: Number,
+    default: null,
+  },
+  deletedAt: {
+    type: Date,
+    default: null
+  },
+  business: {
+    type: mongoose.Types.ObjectId,
+    ref: "business"
+  },
+  service: {
+    type: mongoose.Types.ObjectId,
+    ref: "Service"
+  },
+}, {
+  timestamps: true,
 });
 &nbsp;
-businessSchema.set("toJSON", { virtuals: true });
-&nbsp;
-businessSchema.set("toObject", { virtuals: true });
-&nbsp;
-const business = mongoose.model("business", businessSchema);
-export default business;
+const Reservation = mongoose.model("Reservation", reservationSchema);
+export default Reservation;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -253,7 +193,7 @@ export default business;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-19T08:08:08.026Z
+                at 2024-12-19T07:20:41.206Z
             </div>
         <script src="../prettify.js"></script>
         <script>

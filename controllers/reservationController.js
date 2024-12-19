@@ -12,24 +12,29 @@ export const getAll = async (req, res) => {
     .populate("user");
     return res.status(200).json(reservation);
   } catch (error) {
-    console.log(error);
     return res.status(404).json("No se encontraron reservas disponibles");
   }
 }
 
-async function getById(req, res) {
+export const getById = async (req, res) => {
   try {
     const reservation = await Reservation.findById(req.params.id);
+
+    if(!reservation){
+
+      return res.status(404).json('Reserva no encontrada');
+
+    }
     return res.json(reservation);
-  } catch (reservation) {
-    console.log(error);
-    return res.status(404).json(" Reserva no encontrada");
+
+  } catch (error) {
+    return res.status(404).json("Hubo un problema en la consulta");
   }
 }
 
 
 
-async function create(req, res) {
+export const create = async (req, res) => {
 
   console.log(req.auth.id);
 
@@ -53,7 +58,6 @@ async function create(req, res) {
   
       return res.status(201).json(newReservation);
     } catch (error) {
-      console.log(error.errors);//.status.properties.message);
       return res.status(501).json({
         message: ("Error en el servidor")
       })
@@ -61,26 +65,32 @@ async function create(req, res) {
   }
 }
 
-async function update(req, res) {
-  const reservationToUpdate = await Reservation.findById(req.params.id);
+export const update = async(req, res) => {
 
-  if (reservationToUpdate !== null) {
-    const { dateReservation, timeReservation, status, priceTotal} = req.body;
-
-    reservationToUpdate.dateReservation = dateReservation || reservationToUpdate.dateReservation;
-    reservationToUpdate.timeReservation = timeReservation || reservationToUpdate.timeReservation;
-    reservationToUpdate.status = status || reservationToUpdate.status;
-    reservationToUpdate.priceTotal = priceTotal|| reservationToUpdate.priceTotal;
-
-    await reservationToUpdate.save();
-
-    return res.json("Reserva actualizada");
-  } else {
-    return res.json("Reserva no exite");
+  try {
+    const reservationToUpdate = await Reservation.findById(req.params.id);
+    if (reservationToUpdate !== null) {
+      const { dateReservation, timeReservation, status, priceTotal} = req.body;
+  
+      reservationToUpdate.dateReservation = dateReservation || reservationToUpdate.dateReservation;
+      reservationToUpdate.timeReservation = timeReservation || reservationToUpdate.timeReservation;
+      reservationToUpdate.status = status || reservationToUpdate.status;
+      reservationToUpdate.priceTotal = priceTotal|| reservationToUpdate.priceTotal;
+  
+      await reservationToUpdate.save();
+  
+      return res.json("Reserva actualizada");
+    } else {
+      return res.status(404).json("Reserva no exite");
+    }
+  } catch (error) {
+    return res.status(501).json({
+      message: ('Error en el servidor')
+    })
   }
 }
 
-async function destroy(req, res) {
+export const destroy = async(req, res) => {
   try {
     const reservationToDelete = await Reservation.findById(req.params.id);
 
@@ -89,11 +99,14 @@ async function destroy(req, res) {
       reservationToDelete.save();
 
       return res.json("La reserva se cancelo con exito");
-    } 
+    }else {
+      return res.status(404).json("No se encuentra reserva para cancelar");
+    }
     
-  } catch (err) {
-    console.log(err);
-    return res.status(404).json("No se encuentra reserva para cancelar");
+  } catch (error) {
+    return res.status(501).json({
+      message: ('Error en el servidor')
+    })
   }
 }
 
