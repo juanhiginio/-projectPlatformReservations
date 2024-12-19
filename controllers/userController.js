@@ -11,12 +11,11 @@ export const getAll = async (req, res) => {
   }
 };
 
-async function getById(req, res) {
+export const getById = async(req, res) => {
   try {
     const user = await User.findById(req.params.id);
     return res.json(user);
   } catch (error) {
-    console.log(error);
     return res.status(404).json("Usuario no encontrado");
   }
 };
@@ -40,10 +39,10 @@ export const create = async (req, res) => {
   }
 };
 
-async function update(req, res) {
-  const userToUpdate = await User.findById(req.params.id);
+export const update = async(req, res) => {
 
   try {
+    const userToUpdate = await User.findById(req.params.id);
     if (userToUpdate !== null) {
       const { name, email, address ,password, phone, typeUser } = req.body;
   
@@ -59,15 +58,14 @@ async function update(req, res) {
   
       return res.json("El usuario se actualizo");
     } else {
-      return res.json("El usuario no exite con este id");
+      return res.status(404).json("El usuario con este id no existe");
     }
-  } catch (err) {
-    console.log(err);
-    return res.json("Ups, hubo un error al intentar actualizar el usuario");
+  } catch (error) {
+    return res.status(501).json("Hubo un error al intentar actualizar el usuario");
   }
 };
 
-async function destroy(req, res) {
+export const destroy = async(req, res) => {
   try {
     const userToDelete = await User.findById(req.params.id);
 
@@ -76,14 +74,11 @@ async function destroy(req, res) {
       userToDelete.save();
 
       return res.json("Usuario eliminado con exito");
+    } else {
+      return res.status(404).json("El usuario no existe");
     }
-  } catch (err) {
-    console.log(err);
-    return res
-      .status(404)
-      .json(
-        "Ups, hubo un error al eliminar el usuario que indicaste, puede que el usuario con el ID indicado no exista en los registros"
-      );
+  } catch (error) {
+    return res.status(501).json("Hubo un error al eliminar el usuario que indicaste");
   }
 };
 
