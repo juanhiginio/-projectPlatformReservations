@@ -11,15 +11,14 @@ export const getAll = async (req, res) => {
     .populate("services");
     return res.status(200).json(business);
   } catch (error) {
-    return res.status(404).json("negocio no encontrado");
+    return res.status(404).json("Negocio no encontrado");
   }}
 
  export const  getById =  async(req, res) => {
     try {
       const business = await Business.findById(req.params.id).populate("services");
-      return res.json(business);
+      return res.status(200).json(business);
     } catch (error) {
-      console.log(error);
       return res.status(404).json("Negocio no encontrado");
     }
   }
@@ -56,7 +55,7 @@ export const getAll = async (req, res) => {
     return res.json("No tienes permiso para crear un negocio");
   }
   
-  async function update(req, res) {
+  export const update = async(req, res) => {
 
     const user = await User.findById(req.auth.id);
 
@@ -82,16 +81,16 @@ export const getAll = async (req, res) => {
     
         return res.json("El negocio se actualizo");
       } else {
-        return res.json("No existe negocio con este id");
+        return res.status(404).json("No existe negocio con este id");
       }
 
     }
 
-    return res.json("No tienes permiso para editar un negocio");
+    return res.status(403).json("No tienes permiso para editar un negocio");
 
   }
   
-  async function destroy(req, res) {
+  export const destroy = async (req, res) => {
 
     const user = await User.findById(req.auth.id);
 
@@ -106,15 +105,15 @@ export const getAll = async (req, res) => {
           businessToDelete.save();
     
           return res.json("El negocio fue eliminado con exito");
-        } 
+        } else {
+          return res.status(404).json("El negocio con el ID indicado no existe");
+        }
         
       } catch (err) {
-        console.log(err);
-        return res.status(404).json("Ups, hubo un error al eliminar el negocio que indicaste, puede que el negocio con el ID indicado no exista en los registros");
+        return res.status(404).json("Hubo un error inesperado al eliminar el negocio");
       }
     }
-
-    return res.json("No tienes permiso para eliminar un negocio");
+    return res.status(403).json("No tienes permiso para eliminar un negocio");
 
   }
   
