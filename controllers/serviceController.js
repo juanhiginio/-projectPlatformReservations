@@ -3,14 +3,13 @@ import Service from "../models/Service.js";
 import business from "../models/Business.js";
 import User from "../models/User.js";
 
-async function getAll(req, res) {
+export const getAll = async(req, res) => {
     try {
         const services = await Service.find({ deletedAt: null })
         .populate("businessService");
-        return res.json(services);
-    } catch (err) {
-        console.log(err);
-        return res.status(404).json("No se encontro la lista completa de servicios");
+        return res.status(200).json(services);
+    } catch (error) {
+        return res.status(404).json("No se encontro la lista de servicios");
     }
 };
 
@@ -48,20 +47,20 @@ export const create = async (req, res) => {
                 businessService: businessService
             });
             return res.status(201).json("El nuevo Servicio ha sido creado con exito");
-        } catch (err) {
-            console.log(err);
-            return res.status(501).json("Ups, ha ocurrido un error al crear un nuevo servicio, revisa que todos los parametros esten llenos");
+        } catch (error) {
+            return res.status(501).json("Ha ocurrido un error al crear un nuevo servicio");
         }
     }
 
-    return res.json("No tienes permiso para crear un servicio, solo los negocios pueden hacer esto");
+    return res.status(403).json("No tienes permiso para crear un servicio, solo los negocios pueden hacer esto");
 
 };
 
-async function update(req, res) {
-    const serviceToUpdate = await Service.findById(req.params.id);
+export const update = async(req, res) => {
+    
     
     try {
+        const serviceToUpdate = await Service.findById(req.params.id);
         if(serviceToUpdate !== null) {
             const { name, schedule, serviceTime, businessDays, address, details, price } = req.body;
             const serviceLogo = req.file.filename;
@@ -77,17 +76,16 @@ async function update(req, res) {
 
             await serviceToUpdate.save();
 
-            return res.json("Servicio Actualizado con exito");
+            return res.json("Servicio actualizado con exito");
         } else {
-            return res.json("El servicio con el ID indicado no existe en los registros");
+            return res.status(404).json("El servicio con el ID indicado no existe en los registros");
         }
-    } catch (err) {
-        console.log(err);
-        return res.json("Ups, ha ocurrido un error al intentar actualizar el servicio");
+    } catch (error) {
+        return res.status(501).json("Ha ocurrido un error al intentar actualizar el servicio");
     }
 };
 
-async function destroy(req, res) {
+export const destroy = async(req, res) => {
     try {
         const serviceToDelete = await Service.findById(req.params.id);
 
@@ -98,10 +96,9 @@ async function destroy(req, res) {
             return res.json("Servicio eliminado con exito");
         }
 
-        return res.json("El servicio con el ID indicad no existe en los registros");
-    } catch (err) {
-        console.log(err);
-        return res.status(404).json("Ups, hubo un error al eliminar el servicio que indicaste, puede que el servicio con el ID indicado no exista en los registros");
+        return res.status(404).json("El servicio con el ID indicado no existe en los registros");
+    } catch (error) {
+        return res.status(501).json("Hubo un error al eliminar el servicio que indicaste, puede que el servicio con el ID indicado no exista en los registros");
     }
 };
 
