@@ -3,7 +3,7 @@ import User from "../models/User.js";
 import jwt from "jsonwebtoken";
 import bycrypt from "bcryptjs";
 
-async function token(req, res) {
+export const token = async(req, res) => {
     
     try {
 
@@ -18,14 +18,15 @@ async function token(req, res) {
                 return res.json({ token: token, name: user.name });
             };
 
-        };
+        } else {
+            return res.status(401).json({
+                message: "Error, las credenciales son invalidas"
+            });
+        }
 
-        return res.status(401).json({
-            message: "Error, las credenciales son invalidas"
-        });
+        
 
-    } catch (err) {
-        console.log(err);
+    } catch (error) {
         return res.status(500).json({
             message: "Ups, ocurrio un error al validar las credenciales"
         });

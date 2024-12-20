@@ -438,7 +438,6 @@ describe('eliminacion de los servicios', () => {
         expect(res.status).toHaveBeenCalledWith(501);
         expect(res.json).toHaveBeenCalledWith('Hubo un error al eliminar el servicio que indicaste, puede que el servicio con el ID indicado no exista en los registros');
 
-
     });
 
 });
